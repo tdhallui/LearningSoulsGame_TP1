@@ -1,8 +1,8 @@
-package test;
-
+import com.sun.istack.internal.Nullable;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -248,6 +248,70 @@ public class HeroTest {
             Assert.fail("should have a class called Hero");
         } catch (NoSuchMethodException e) {
             Assert.fail("should have a setter method called setMaxStamina");
+        }
+    }
+
+    @Nullable
+    private Constructor<?> searchConstructorWithAStringParameter(Class <?> c)
+    {
+        for (Constructor<?> constructor : c.getConstructors()) {
+            if (constructor.getParameterCount() == 1 && constructor.getParameterTypes()[0].getName() == "java.lang.String") {
+                return constructor;
+            }
+        }
+        return null;
+    }
+
+    @Test
+    public void existConstructor()
+    {
+        try {
+            Class <?> c = Class.forName("Hero");
+            Constructor<?> constructor = searchConstructorWithAStringParameter(c);
+
+            if (constructor == null) {
+                Assert.fail("should have a constructor with a string parameter");
+            } else {
+                Hero h = new Hero("supertoto");
+
+                Assert.assertTrue("wrong name (supertoto)", h.getName() == "supertoto");
+                Assert.assertTrue("wrong life (100)", h.getLife() == 100);
+                Assert.assertTrue("wrong stamina (50)", h.getStamina() == 50);
+            }
+        } catch (ClassNotFoundException e) {
+            Assert.fail("should have a class called Hero");
+        }
+    }
+
+    @Nullable
+    private Constructor<?> searchDefaultConstructor(Class <?> c)
+    {
+        for (Constructor<?> constructor : c.getConstructors()) {
+            if (constructor.getParameterCount() == 0) {
+                return constructor;
+            }
+        }
+        return null;
+    }
+
+    @Test
+    public void existDefaultConstructor()
+    {
+        try {
+            Class <?> c = Class.forName("Hero");
+            Constructor<?> constructor = searchDefaultConstructor(c);
+
+            if (constructor == null) {
+                Assert.fail("should have a default constructor");
+            } else {
+                Hero h = new Hero();
+
+                Assert.assertTrue("wrong default name (Gregooninator)", h.getName() == "Gregooninator");
+                Assert.assertTrue("wrong life (100)", h.getLife() == 100);
+                Assert.assertTrue("wrong stamina (50)", h.getStamina() == 50);
+            }
+        } catch (ClassNotFoundException e) {
+            Assert.fail("should have a class called Hero");
         }
     }
 
