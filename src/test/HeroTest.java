@@ -1,15 +1,33 @@
 import com.sun.istack.internal.Nullable;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class HeroTest {
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+
+    @Before
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+    }
+
+    @After
+    public void cleanUpStreams() {
+        System.setOut(null);
+        System.setErr(null);
+    }
+
     @Test
-    public void existClass()
-    {
+    public void existClass() {
         try {
             Class.forName("Hero");
         } catch (ClassNotFoundException e) {
@@ -18,10 +36,9 @@ public class HeroTest {
     }
 
     @Test
-    public void existNameAttribute()
-    {
+    public void existNameAttribute() {
         try {
-            Class <?> c = Class.forName("Hero");
+            Class<?> c = Class.forName("Hero");
             Field f = c.getDeclaredField("name");
 
             Assert.assertTrue("attribute name should be a string", f.getType().getName() == "java.lang.String");
@@ -33,10 +50,9 @@ public class HeroTest {
     }
 
     @Test
-    public void existLifeAttribute()
-    {
+    public void existLifeAttribute() {
         try {
-            Class <?> c = Class.forName("Hero");
+            Class<?> c = Class.forName("Hero");
             Field f = c.getDeclaredField("life");
 
             Assert.assertTrue("attribute name should be a int", f.getType().getName() == "int");
@@ -48,10 +64,9 @@ public class HeroTest {
     }
 
     @Test
-    public void existMaxLifeAttribute()
-    {
+    public void existMaxLifeAttribute() {
         try {
-            Class <?> c = Class.forName("Hero");
+            Class<?> c = Class.forName("Hero");
             Field f = c.getDeclaredField("maxLife");
 
             Assert.assertTrue("attribute name should be a int", f.getType().getName() == "int");
@@ -63,10 +78,9 @@ public class HeroTest {
     }
 
     @Test
-    public void existStaminaAttribute()
-    {
+    public void existStaminaAttribute() {
         try {
-            Class <?> c = Class.forName("Hero");
+            Class<?> c = Class.forName("Hero");
             Field f = c.getDeclaredField("stamina");
 
             Assert.assertTrue("attribute name should be a int", f.getType().getName() == "int");
@@ -78,10 +92,9 @@ public class HeroTest {
     }
 
     @Test
-    public void existMaxStaminaAttribute()
-    {
+    public void existMaxStaminaAttribute() {
         try {
-            Class <?> c = Class.forName("Hero");
+            Class<?> c = Class.forName("Hero");
             Field f = c.getDeclaredField("maxStamina");
 
             Assert.assertTrue("attribute name should be a int", f.getType().getName() == "int");
@@ -93,10 +106,9 @@ public class HeroTest {
     }
 
     @Test
-    public void existGetName()
-    {
+    public void existGetName() {
         try {
-            Class <?> c = Class.forName("Hero");
+            Class<?> c = Class.forName("Hero");
             Method m = c.getMethod("getName");
 
             Assert.assertTrue("wrong parameter number (0)", m.getParameterCount() == 0);
@@ -109,11 +121,10 @@ public class HeroTest {
     }
 
     @Test
-    public void existSetName()
-    {
+    public void existSetName() {
         try {
-            Class <?> c = Class.forName("Hero");
-            Method m = c.getMethod("setName", new Class[] { String.class });
+            Class<?> c = Class.forName("Hero");
+            Method m = c.getMethod("setName", new Class[]{String.class});
 
             Assert.assertTrue("wrong parameter number (1)", m.getParameterCount() == 1);
         } catch (ClassNotFoundException e) {
@@ -124,10 +135,9 @@ public class HeroTest {
     }
 
     @Test
-    public void existGetLife()
-    {
+    public void existGetLife() {
         try {
-            Class <?> c = Class.forName("Hero");
+            Class<?> c = Class.forName("Hero");
             Method m = c.getMethod("getLife");
 
             Assert.assertTrue("wrong parameter number (0)", m.getParameterCount() == 0);
@@ -140,11 +150,10 @@ public class HeroTest {
     }
 
     @Test
-    public void existSetLife()
-    {
+    public void existSetLife() {
         try {
-            Class <?> c = Class.forName("Hero");
-            Method m = c.getMethod("setLife", new Class[] { int.class });
+            Class<?> c = Class.forName("Hero");
+            Method m = c.getMethod("setLife", new Class[]{int.class});
 
             Assert.assertTrue("wrong parameter number (1)", m.getParameterCount() == 1);
             Assert.assertTrue("wrong parameter type 'int)", m.getParameterTypes()[0].getName() == "int");
@@ -156,10 +165,9 @@ public class HeroTest {
     }
 
     @Test
-    public void existGetMaxLife()
-    {
+    public void existGetMaxLife() {
         try {
-            Class <?> c = Class.forName("Hero");
+            Class<?> c = Class.forName("Hero");
             Method m = c.getMethod("getMaxLife");
 
             Assert.assertTrue("wrong parameter number (0)", m.getParameterCount() == 0);
@@ -172,11 +180,10 @@ public class HeroTest {
     }
 
     @Test
-    public void existSetMaxLife()
-    {
+    public void existSetMaxLife() {
         try {
-            Class <?> c = Class.forName("Hero");
-            Method m = c.getMethod("setMaxLife", new Class[] { int.class });
+            Class<?> c = Class.forName("Hero");
+            Method m = c.getMethod("setMaxLife", new Class[]{int.class});
 
             Assert.assertTrue("wrong parameter number (1)", m.getParameterCount() == 1);
             Assert.assertTrue("wrong parameter type (int)", m.getParameterTypes()[0].getName() == "int");
@@ -188,10 +195,9 @@ public class HeroTest {
     }
 
     @Test
-    public void existGetStamina()
-    {
+    public void existGetStamina() {
         try {
-            Class <?> c = Class.forName("Hero");
+            Class<?> c = Class.forName("Hero");
             Method m = c.getMethod("getStamina");
 
             Assert.assertTrue("wrong parameter number (0)", m.getParameterCount() == 0);
@@ -204,11 +210,10 @@ public class HeroTest {
     }
 
     @Test
-    public void existSetStamina()
-    {
+    public void existSetStamina() {
         try {
-            Class <?> c = Class.forName("Hero");
-            Method m = c.getMethod("setStamina", new Class[] { int.class });
+            Class<?> c = Class.forName("Hero");
+            Method m = c.getMethod("setStamina", new Class[]{int.class});
 
             Assert.assertTrue("wrong parameter number (1)", m.getParameterCount() == 1);
             Assert.assertTrue("wrong parameter type (int)", m.getParameterTypes()[0].getName() == "int");
@@ -220,10 +225,9 @@ public class HeroTest {
     }
 
     @Test
-    public void existGetMaxStamina()
-    {
+    public void existGetMaxStamina() {
         try {
-            Class <?> c = Class.forName("Hero");
+            Class<?> c = Class.forName("Hero");
             Method m = c.getMethod("getMaxStamina");
 
             Assert.assertTrue("wrong parameter number (0)", m.getParameterCount() == 0);
@@ -236,10 +240,9 @@ public class HeroTest {
     }
 
     @Test
-    public void existSetMaxStamina()
-    {
+    public void existSetMaxStamina() {
         try {
-            Class <?> c = Class.forName("Hero");
+            Class<?> c = Class.forName("Hero");
             Method m = c.getMethod("setMaxStamina", int.class);
 
             Assert.assertTrue("wrong parameter number (1)", m.getParameterCount() == 1);
@@ -252,8 +255,7 @@ public class HeroTest {
     }
 
     @Nullable
-    private Constructor<?> searchConstructorWithAStringParameter(Class <?> c)
-    {
+    private Constructor<?> searchConstructorWithAStringParameter(Class<?> c) {
         for (Constructor<?> constructor : c.getConstructors()) {
             if (constructor.getParameterCount() == 1 && constructor.getParameterTypes()[0].getName() == "java.lang.String") {
                 return constructor;
@@ -263,10 +265,9 @@ public class HeroTest {
     }
 
     @Test
-    public void existConstructor()
-    {
+    public void existConstructor() {
         try {
-            Class <?> c = Class.forName("Hero");
+            Class<?> c = Class.forName("Hero");
             Constructor<?> constructor = searchConstructorWithAStringParameter(c);
 
             if (constructor == null) {
@@ -284,8 +285,7 @@ public class HeroTest {
     }
 
     @Nullable
-    private Constructor<?> searchDefaultConstructor(Class <?> c)
-    {
+    private Constructor<?> searchDefaultConstructor(Class<?> c) {
         for (Constructor<?> constructor : c.getConstructors()) {
             if (constructor.getParameterCount() == 0) {
                 return constructor;
@@ -295,10 +295,9 @@ public class HeroTest {
     }
 
     @Test
-    public void existDefaultConstructor()
-    {
+    public void existDefaultConstructor() {
         try {
-            Class <?> c = Class.forName("Hero");
+            Class<?> c = Class.forName("Hero");
             Constructor<?> constructor = searchDefaultConstructor(c);
 
             if (constructor == null) {
@@ -315,4 +314,11 @@ public class HeroTest {
         }
     }
 
+    @Test
+    public void testPrintStats() {
+        Hero h = new Hero();
+
+        h.printStats();
+        Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\n", outContent.toString());
+    }
 }
