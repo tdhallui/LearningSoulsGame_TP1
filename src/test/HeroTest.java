@@ -337,4 +337,23 @@ public class HeroTest {
         Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\n", outContent.toString());
     }
 
+    @Test
+    public void testIsAlive() {
+        try {
+            Class<?> c = Class.forName("Hero");
+            Method m = c.getMethod("isAlive");
+
+            Assert.assertTrue("wrong parameter number (0)", m.getParameterCount() == 0);
+            Assert.assertTrue("wrong return type (boolean)", m.getReturnType() == boolean.class);
+
+            Hero h = new Hero();
+
+            Assert.assertTrue("hero should be alive", h.isAlive());
+        } catch (ClassNotFoundException e) {
+            Assert.fail("should have a class called Hero");
+        } catch (NoSuchMethodException e) {
+            Assert.fail("should have a setter method called isAlive");
+        }
+    }
+
 }
