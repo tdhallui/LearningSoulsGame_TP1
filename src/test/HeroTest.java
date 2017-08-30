@@ -321,4 +321,12 @@ public class HeroTest {
         h.printStats();
         Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\n", outContent.toString());
     }
+
+    @Test
+    public void testToString() {
+        Hero h = new Hero();
+
+        Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50", h.toString());
+    }
+
 }
