@@ -329,4 +329,12 @@ public class HeroTest {
         Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50", h.toString());
     }
 
+    @Test
+    public void testMain() {
+        String[] args = {};
+
+        LearningSoulsGame.main(args);
+        Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\n", outContent.toString());
+    }
+
 }
