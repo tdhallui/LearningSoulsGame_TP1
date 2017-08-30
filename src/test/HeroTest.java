@@ -338,6 +338,29 @@ public class HeroTest {
     }
 
     @Test
+    public void testPrintStats2() {
+        Hero h = new Hero();
+
+        h.printStats();
+        Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\t(ALIVE)\n", outContent.toString());
+    }
+
+    @Test
+    public void testToString2() {
+        Hero h = new Hero();
+
+        Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\t(ALIVE)", h.toString());
+    }
+
+    @Test
+    public void testMain2() {
+        String[] args = {};
+
+        LearningSoulsGame.main(args);
+        Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\t(ALIVE)\n", outContent.toString());
+    }
+
+    @Test
     public void testIsAlive() {
         try {
             Class<?> c = Class.forName("Hero");
