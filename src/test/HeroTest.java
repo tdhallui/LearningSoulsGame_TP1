@@ -398,19 +398,21 @@ public class HeroTest {
     public void testMain() {
         try {
             Class<?> c = Class.forName("LearningSoulsGame");
-            Method m = c.getDeclaredMethod("main");
-            String[] args = {};
+            Class<?> c2 = Class.forName("Hero");
+            Method m = c.getMethod("main", String[].class);
+            Object[] args = new Object[1];
 
-            m.invoke(args);
+            args[0] = new String[] {};
+            m.invoke(null, args);
             try {
-                Method m2 = c.getMethod("isAlive");
+                Method m2 = c2.getMethod("isAlive");
 
-                Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\t(ALIVE)\n", outContent.toString());
+                Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\t(ALIVE)", outContent.toString().split("\n", 2)[0]);
             } catch (NoSuchMethodException e) {
                 Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\n", outContent.toString());
             }
         } catch (ClassNotFoundException e) {
-            Assert.fail("should have a class called Hero");
+            Assert.fail("should have a class called LearningSoulsGame");
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
