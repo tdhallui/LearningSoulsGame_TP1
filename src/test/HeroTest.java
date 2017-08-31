@@ -397,12 +397,13 @@ public class HeroTest {
     @Test
     public void testMain() {
         try {
-            Class<?> c = Class.forName("Hero");
+            Class<?> c = Class.forName("LearningSoulsGame");
+            Method m = c.getDeclaredMethod("main");
             String[] args = {};
 
-            LearningSoulsGame.main(args);
+            m.invoke(args);
             try {
-                Method m = c.getMethod("isAlive");
+                Method m2 = c.getMethod("isAlive");
 
                 Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\t(ALIVE)\n", outContent.toString());
             } catch (NoSuchMethodException e) {
@@ -410,6 +411,12 @@ public class HeroTest {
             }
         } catch (ClassNotFoundException e) {
             Assert.fail("should have a class called Hero");
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 

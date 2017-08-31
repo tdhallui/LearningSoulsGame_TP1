@@ -4,7 +4,6 @@
     <list default="true" id="700d8b36-939f-4b26-83bb-f157f1bdeda9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/HeroTest.java" afterPath="$PROJECT_DIR$/src/test/HeroTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/MonsterTest.java" afterPath="$PROJECT_DIR$/src/test/MonsterTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +31,8 @@
       <file leaf-file-name="HeroTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/HeroTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="403" column="0" lean-forward="true" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
+            <state relative-caret-position="144">
+              <caret line="403" column="27" lean-forward="true" selection-start-line="403" selection-start-column="27" selection-end-line="403" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -44,7 +43,7 @@
       <file leaf-file-name="MonsterTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/MonsterTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
+            <state relative-caret-position="6647">
               <caret line="391" column="114" lean-forward="false" selection-start-line="391" selection-start-column="92" selection-end-line="391" selection-end-column="114" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -56,7 +55,7 @@
       <file leaf-file-name="Monster.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Monster.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
+            <state relative-caret-position="578">
               <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding>
                 <element signature="e#912#913#0" expanded="true" />
@@ -155,8 +154,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -179,8 +179,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -295,14 +294,12 @@
       <workItem from="1504080048663" duration="236000" />
       <workItem from="1504080329279" duration="4246000" />
       <workItem from="1504163203734" duration="5234000" />
-      <workItem from="1504179524654" duration="1960000" />
+      <workItem from="1504179524654" duration="2015000" />
+      <workItem from="1504183111542" duration="135000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Tests - 2017.08.31 at 13h 41m 44s.xml">
-      <configuration name="Tests" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Tests - 2017.08.31 at 13h 42m 10s.xml">
       <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
@@ -330,9 +327,12 @@
     <history-entry file="Tests - 2017.08.31 at 14h 36m 14s.xml">
       <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Tests - 2017.08.31 at 14h 40m 37s.xml">
+      <configuration name="Tests" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24432000" />
+    <option name="totallyTimeSpent" value="24622000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1366" y="29" width="1920" height="1051" extended-state="7" />
@@ -380,6 +380,53 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Hero.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="59" column="13" lean-forward="false" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/MonsterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6647">
+          <caret line="391" column="114" lean-forward="false" selection-start-line="391" selection-start-column="92" selection-end-line="391" selection-end-column="114" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Monster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="e#912#913#0" expanded="true" />
+            <element signature="e#956#957#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LearningSoulsGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/HeroTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6851">
+          <caret line="403" column="0" lean-forward="false" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Hero.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -567,7 +614,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Monster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
+        <state relative-caret-position="578">
           <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
             <element signature="e#912#913#0" expanded="true" />
@@ -586,7 +633,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/MonsterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
+        <state relative-caret-position="6647">
           <caret line="391" column="114" lean-forward="false" selection-start-line="391" selection-start-column="92" selection-end-line="391" selection-end-column="114" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -596,8 +643,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/HeroTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="403" column="0" lean-forward="true" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
+        <state relative-caret-position="144">
+          <caret line="403" column="27" lean-forward="true" selection-start-line="403" selection-start-column="27" selection-end-line="403" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
