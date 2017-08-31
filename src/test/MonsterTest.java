@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class MonsterTest {
@@ -273,14 +274,25 @@ public class MonsterTest {
             if (constructor == null) {
                 Assert.fail("should have a constructor with a string parameter");
             } else {
-                Monster m = new Monster("supertoto");
+                Object o = constructor.newInstance("supertoto");
+                Method gn = c.getMethod("getName");
+                Method gl = c.getMethod("getLife");
+                Method gs = c.getMethod("getStamina");
 
-                Assert.assertTrue("wrong name (supertoto)", m.getName() == "supertoto");
-                Assert.assertTrue("wrong life (10)", m.getLife() == 10);
-                Assert.assertTrue("wrong stamina (10)", m.getStamina() == 10);
+                Assert.assertTrue("wrong name (supertoto)", gn.invoke(o) == "supertoto");
+                Assert.assertTrue("wrong life (10)", ((Integer)(gl.invoke(o))).equals(new Integer(10)));
+                Assert.assertTrue("wrong stamina (10)", ((Integer)(gs.invoke(o))).equals(new Integer(10)));
             }
         } catch (ClassNotFoundException e) {
             Assert.fail("should have a class called Monster");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 
@@ -303,20 +315,31 @@ public class MonsterTest {
             if (constructor == null) {
                 Assert.fail("should have a default constructor");
             } else {
-                Monster m = new Monster();
+                Object o = constructor.newInstance();
+                Method gn = c.getMethod("getName");
+                Method gl = c.getMethod("getLife");
+                Method gs = c.getMethod("getStamina");
 
                 try {
                     Field f = c.getField("INSTANCES_COUNT");
 
-                    Assert.assertTrue("wrong default name (Monster)", m.getName() == "Monster");
+                    Assert.assertTrue("wrong default name (Monster)", gn.invoke(o) == "Monster");
                 } catch (NoSuchFieldException e) {
-                    Assert.assertTrue("wrong default name (Monster_xxx)", m.getName().substring(0, 8).equals("Monster_"));
+                    Assert.assertTrue("wrong default name (Monster_xxx)", ((String)(gn.invoke(o))).substring(0, 8).equals("Monster_"));
                 }
-                Assert.assertTrue("wrong life (10)", m.getLife() == 10);
-                Assert.assertTrue("wrong stamina (10)", m.getStamina() == 10);
+                Assert.assertTrue("wrong life (10)", ((Integer)(gl.invoke(o))).equals(new Integer(10)));
+                Assert.assertTrue("wrong stamina (10)", ((Integer)(gs.invoke(o))).equals(new Integer(10)));
             }
         } catch (ClassNotFoundException e) {
             Assert.fail("should have a class called Monster");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 
@@ -325,9 +348,11 @@ public class MonsterTest {
         Class<?> c = null;
         try {
             c = Class.forName("Monster");
-            Monster m = new Monster();
+            Constructor<?> constructor = searchDefaultConstructor(c);
+            Object o = constructor.newInstance();
+            Method ps = c.getMethod("printStats");
 
-            m.printStats();
+            ps.invoke(o);
             try {
                 Field f = c.getDeclaredField("INSTANCES_COUNT");
                 String str = outContent.toString().replaceAll("Monster_[0-9]\t", "");
@@ -338,6 +363,14 @@ public class MonsterTest {
             }
         } catch (ClassNotFoundException e) {
             Assert.fail("should have a class called Monster");
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
         }
     }
 
@@ -346,18 +379,28 @@ public class MonsterTest {
         Class<?> c = null;
         try {
             c = Class.forName("Monster");
-            Monster m = new Monster();
+            Constructor<?> constructor = searchDefaultConstructor(c);
+            Object o = constructor.newInstance();
+            Method ts = c.getMethod("toString");
 
             try {
                 Field f = c.getDeclaredField("INSTANCES_COUNT");
-                String str = m.toString().replaceAll("Monster_[0-9]\t", "");
+                String str = ((String)(ts.invoke(o))).replaceAll("Monster_[0-9]\t", "");
 
                 Assert.assertEquals("[ Monster ]\tLIFE: 10\tSTAMINA: 10\t(ALIVE)", str);
             } catch (NoSuchFieldException e) {
-                Assert.assertEquals("[ Monster ]\tMonster\tLIFE: 10\tSTAMINA: 10\t(ALIVE)", m.toString());
+                Assert.assertEquals("[ Monster ]\tMonster\tLIFE: 10\tSTAMINA: 10\t(ALIVE)", (String)(ts.invoke(o)));
             }
         } catch (ClassNotFoundException e) {
             Assert.fail("should have a class called Monster");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 
@@ -370,13 +413,21 @@ public class MonsterTest {
             Assert.assertTrue("wrong parameter number (0)", m.getParameterCount() == 0);
             Assert.assertTrue("wrong return type (boolean)", m.getReturnType() == boolean.class);
 
-            Monster mo = new Monster();
+            Constructor<?> constructor = searchDefaultConstructor(c);
+            Object o = constructor.newInstance();
+            Method ia = c.getMethod("isAlive");
 
-            Assert.assertTrue("Monster should be alive", mo.isAlive());
+            Assert.assertTrue("Monster should be alive", (Boolean)(ia.invoke(o)));
         } catch (ClassNotFoundException e) {
             Assert.fail("should have a class called Monster");
         } catch (NoSuchMethodException e) {
             Assert.fail("should have a setter method called isAlive");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 

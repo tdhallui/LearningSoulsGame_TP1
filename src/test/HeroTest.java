@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class HeroTest {
@@ -273,14 +274,25 @@ public class HeroTest {
             if (constructor == null) {
                 Assert.fail("should have a constructor with a string parameter");
             } else {
-                Hero h = new Hero("supertoto");
+                Object o = constructor.newInstance("supertoto");
+                Method gn = c.getMethod("getName");
+                Method gl = c.getMethod("getLife");
+                Method gs = c.getMethod("getStamina");
 
-                Assert.assertTrue("wrong name (supertoto)", h.getName() == "supertoto");
-                Assert.assertTrue("wrong life (100)", h.getLife() == 100);
-                Assert.assertTrue("wrong stamina (50)", h.getStamina() == 50);
+                Assert.assertTrue("wrong name (supertoto)", gn.invoke(o) == "supertoto");
+                Assert.assertTrue("wrong life (100)", ((Integer) (gl.invoke(o))).equals(new Integer(100)));
+                Assert.assertTrue("wrong stamina (50)", ((Integer) (gs.invoke(o))).equals(new Integer(50)));
             }
         } catch (ClassNotFoundException e) {
             Assert.fail("should have a class called Hero");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 
@@ -303,14 +315,25 @@ public class HeroTest {
             if (constructor == null) {
                 Assert.fail("should have a default constructor");
             } else {
-                Hero h = new Hero();
+                Object o = constructor.newInstance();
+                Method gn = c.getMethod("getName");
+                Method gl = c.getMethod("getLife");
+                Method gs = c.getMethod("getStamina");
 
-                Assert.assertTrue("wrong default name (Gregooninator)", h.getName() == "Gregooninator");
-                Assert.assertTrue("wrong life (100)", h.getLife() == 100);
-                Assert.assertTrue("wrong stamina (50)", h.getStamina() == 50);
+                Assert.assertTrue("wrong default name (Gregooninator)", gn.invoke(o) == "Gregooninator");
+                Assert.assertTrue("wrong life (100)", ((Integer) (gl.invoke(o))).equals(new Integer(100)));
+                Assert.assertTrue("wrong stamina (50)", ((Integer) (gs.invoke(o))).equals(new Integer(50)));
             }
         } catch (ClassNotFoundException e) {
             Assert.fail("should have a class called Hero");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 
@@ -318,9 +341,11 @@ public class HeroTest {
     public void testPrintStats() {
         try {
             Class<?> c = Class.forName("Hero");
-            Hero h = new Hero();
+            Constructor<?> constructor = searchDefaultConstructor(c);
+            Object o = constructor.newInstance();
+            Method ps = c.getMethod("printStats");
 
-            h.printStats();
+            ps.invoke(o);
             try {
                 Method m = c.getMethod("isAlive");
 
@@ -330,6 +355,14 @@ public class HeroTest {
             }
         } catch (ClassNotFoundException e) {
             Assert.fail("should have a class called Hero");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 
@@ -337,17 +370,27 @@ public class HeroTest {
     public void testToString() {
         try {
             Class<?> c = Class.forName("Hero");
-            Hero h = new Hero();
+            Constructor<?> constructor = searchDefaultConstructor(c);
+            Object o = constructor.newInstance();
+            Method ts = c.getMethod("toString");
 
             try {
                 Method m = c.getMethod("isAlive");
 
-                Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\t(ALIVE)", h.toString());
+                Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\t(ALIVE)", (String)(ts.invoke(o)));
             } catch (NoSuchMethodException e) {
-                Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50", h.toString());
+                Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50", (String)(ts.invoke(o)));
             }
         } catch (ClassNotFoundException e) {
             Assert.fail("should have a class called Hero");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 
@@ -379,13 +422,21 @@ public class HeroTest {
             Assert.assertTrue("wrong parameter number (0)", m.getParameterCount() == 0);
             Assert.assertTrue("wrong return type (boolean)", m.getReturnType() == boolean.class);
 
-            Hero h = new Hero();
+            Constructor<?> constructor = searchDefaultConstructor(c);
+            Object o = constructor.newInstance();
+            Method ia = c.getMethod("isAlive");
 
-            Assert.assertTrue("hero should be alive", h.isAlive());
+            Assert.assertTrue("Hero should be alive", (Boolean) (ia.invoke(o)));
         } catch (ClassNotFoundException e) {
             Assert.fail("should have a class called Hero");
         } catch (NoSuchMethodException e) {
             Assert.fail("should have a setter method called isAlive");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 
