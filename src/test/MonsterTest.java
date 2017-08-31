@@ -305,7 +305,13 @@ public class MonsterTest {
             } else {
                 Monster m = new Monster();
 
-                Assert.assertTrue("wrong default name (Monster)", m.getName() == "Monster");
+                try {
+                    Field f = c.getField("INSTANCES_COUNT");
+
+                    Assert.assertTrue("wrong default name (Monster)", m.getName() == "Monster");
+                } catch (NoSuchFieldException e) {
+                    Assert.assertTrue("wrong default name (Monster_xxx)", m.getName().substring(0, 8).equals("Monster_"));
+                }
                 Assert.assertTrue("wrong life (10)", m.getLife() == 10);
                 Assert.assertTrue("wrong stamina (10)", m.getStamina() == 10);
             }
@@ -316,17 +322,43 @@ public class MonsterTest {
 
     @Test
     public void testPrintStats() {
-        Monster m = new Monster();
+        Class<?> c = null;
+        try {
+            c = Class.forName("Monster");
+            Monster m = new Monster();
 
-        m.printStats();
-        Assert.assertEquals("[ Monster ]\tMonster\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n", outContent.toString());
+            m.printStats();
+            try {
+                Field f = c.getDeclaredField("INSTANCES_COUNT");
+                String str = outContent.toString().replaceAll("Monster_[0-9]\t", "");
+
+                Assert.assertEquals("[ Monster ]\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n", str);
+            } catch (NoSuchFieldException e) {
+                Assert.assertEquals("[ Monster ]\tMonster\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n", outContent.toString());
+            }
+        } catch (ClassNotFoundException e) {
+            Assert.fail("should have a class called Monster");
+        }
     }
 
     @Test
     public void testToString() {
-        Monster m = new Monster();
+        Class<?> c = null;
+        try {
+            c = Class.forName("Monster");
+            Monster m = new Monster();
 
-        Assert.assertEquals("[ Monster ]\tMonster\tLIFE: 10\tSTAMINA: 10\t(ALIVE)", m.toString());
+            try {
+                Field f = c.getDeclaredField("INSTANCES_COUNT");
+                String str = m.toString().replaceAll("Monster_[0-9]\t", "");
+
+                Assert.assertEquals("[ Monster ]\tLIFE: 10\tSTAMINA: 10\t(ALIVE)", str);
+            } catch (NoSuchFieldException e) {
+                Assert.assertEquals("[ Monster ]\tMonster\tLIFE: 10\tSTAMINA: 10\t(ALIVE)", m.toString());
+            }
+        } catch (ClassNotFoundException e) {
+            Assert.fail("should have a class called Monster");
+        }
     }
 
     @Test
