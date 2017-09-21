@@ -290,7 +290,7 @@ public class HeroTest {
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            Assert.fail("should have methods called getName, getLife and getStamina");
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
@@ -331,7 +331,7 @@ public class HeroTest {
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            Assert.fail("should have methods called getName, getLife and getStamina");
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
@@ -360,7 +360,7 @@ public class HeroTest {
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            Assert.fail("should have a method called printStats");
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
@@ -388,7 +388,7 @@ public class HeroTest {
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            Assert.fail("should have a method called toString");
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
