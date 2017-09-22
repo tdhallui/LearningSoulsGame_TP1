@@ -1,4 +1,4 @@
 out
-src/Hero.java
-src/Monster.java
-src/LearningSoulsGame.java
+src/characters.Hero.java
+src/characters.Monster.java
+src/lsg.LearningSoulsGame.java

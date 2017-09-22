@@ -29,18 +29,18 @@ public class LearningSoulsGameTest {
     @Test
     public void testMain() {
         try {
-            Class<?> c = Class.forName("LearningSoulsGame");
+            Class<?> c = Class.forName("lsg.LearningSoulsGame");
             Method m = c.getMethod("main", String[].class);
             Object[] args = new Object[1];
 
             args[0] = new String[] {};
             m.invoke(null, args);
-            Assert.assertEquals("[ Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\t(ALIVE)\n" +
-                    "[ Monster ]\tStudentatort\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n" +
-                    "[ Monster ]\tMonster_5\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n" +
-                    "[ Monster ]\tMonster_6\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n", outContent.toString());
+            Assert.assertEquals("[ characters.Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\t(ALIVE)\n" +
+                    "[ characters.Monster ]\tStudentatort\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n" +
+                    "[ characters.Monster ]\tMonster_7\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n" +
+                    "[ characters.Monster ]\tMonster_8\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n", outContent.toString());
         } catch (ClassNotFoundException e) {
-            Assert.fail("should have a class called LearningSoulsGame");
+            Assert.fail("should have a class called lsg.LearningSoulsGame");
         } catch (NoSuchMethodException e) {
             Assert.fail("should have a static method called main");
         } catch (IllegalAccessException e) {
