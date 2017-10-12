@@ -1,7 +1,7 @@
 package lsg;
 
-import characters.Hero;
-import characters.Monster;
+import lsg.characters.Hero;
+import lsg.characters.Monster;
 
 /**
  * Created by tdhallui on 22/09/17.

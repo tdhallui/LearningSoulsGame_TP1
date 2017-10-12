@@ -35,10 +35,10 @@ public class LearningSoulsGameTest {
 
             args[0] = new String[] {};
             m.invoke(null, args);
-            Assert.assertEquals("[ characters.Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\t(ALIVE)\n" +
-                    "[ characters.Monster ]\tStudentatort\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n" +
-                    "[ characters.Monster ]\tMonster_7\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n" +
-                    "[ characters.Monster ]\tMonster_8\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n", outContent.toString());
+            Assert.assertEquals("[ lsg.characters.Hero ]\tGregooninator\tLIFE: 100\tSTAMINA: 50\t(ALIVE)\n" +
+                    "[ lsg.characters.Monster ]\tStudentatort\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n" +
+                    "[ lsg.characters.Monster ]\tMonster_7\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n" +
+                    "[ lsg.characters.Monster ]\tMonster_8\tLIFE: 10\tSTAMINA: 10\t(ALIVE)\n", outContent.toString());
         } catch (ClassNotFoundException e) {
             Assert.fail("should have a class called lsg.LearningSoulsGame");
         } catch (NoSuchMethodException e) {
