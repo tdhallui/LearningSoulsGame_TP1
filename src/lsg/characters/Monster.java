@@ -1,17 +1,28 @@
 package lsg.characters;
 
+import lsg.weapons.Claw;
+
 /**
  * Created by tdhallui on 22/09/17.
  */
 public class Monster extends Character
 {
-    public Monster()
-    {
-        super(false, "");
-    }
+    protected static int NOMBRE_MONSTER = 1;
+
     public Monster(String newName)
     {
-        super(false, newName);
+        super(newName);
+        NOMBRE_MONSTER++;
+        this.maxLife = 10;
+        this.life = 10;
+        this.maxStamina = 10;
+        this.stamina = 10;
+        this.typeCharacter = "Monster";
+        this.weapon = new Claw();
+    }
+    public Monster()
+    {
+        this("Monster_"+NOMBRE_MONSTER);
     }
 
     @Override

@@ -8,9 +8,6 @@ import lsg.weapons.Weapons;
  */
 public class Character
 {
-    protected static int NOMBRE_MONSTER = 1;
-    protected static int NOMBRE_HERO = 1;
-
     protected String name;
     protected int maxLife;
     protected int life;
@@ -64,7 +61,7 @@ public class Character
         this.stamina = newStamina;
     }
 
-    protected void setWeapon(Weapons oneWeapon) { this.weapon = oneWeapon; }
+    public void setWeapon(Weapons oneWeapon) { this.weapon = oneWeapon; }
 
     public boolean isAlive()
     {
@@ -101,38 +98,30 @@ public class Character
         return (Math.round(finalDamag));
     }
 
-    public void attack()
+    public long attack()
     {
-        attackWith(this.weapon);
+        return (attackWith(this.weapon));
     }
 
     public int getHitWith(int value)
     {
-        return ((this.life < value) ? this.life : value);
-    }
-
-    public Character(boolean is_hero, String received_name)
-    {
-        if (is_hero == true)
+        int ret = (this.life < value) ? this.life : value;
+        if (this.life < value)
         {
-            if (received_name != "") { this.name = "Gregooninator"+NOMBRE_HERO; NOMBRE_HERO++; }
-            else {this.name = received_name;}
-            this.maxLife = 100;
-            this.life = 100;
-            this.maxStamina = 50;
-            this.stamina = 50;
-            this.typeCharacter = "Hero";
-            this.oneDice = new Dice(101);
+            ret = this.life;
+            this.life = 0;
         }
         else
         {
-            if (received_name != "") { this.name = "Monster_"+NOMBRE_MONSTER; NOMBRE_MONSTER++; }
-            else {this.name = received_name;}
-            this.maxLife = 10;
-            this.life = 10;
-            this.maxStamina = 10;
-            this.stamina = 10;
-            this.typeCharacter = "Monster";
+            ret = value;
+            this.life -= value;
         }
+        return (ret);
+    }
+
+    public Character(String received_name)
+    {
+        this.name = received_name;
+        this.oneDice = new Dice(101);
     }
 }
