@@ -1,6 +1,8 @@
 package lsg;
 
+import lsg.armor.RingedKnightArmor;
 import lsg.characters.Hero;
+import lsg.characters.Lycanthrope;
 import lsg.characters.Monster;
 import lsg.weapons.ShotGun;
 import lsg.weapons.Weapons;
@@ -36,12 +38,32 @@ public class LearningSoulsGame
         }
     }
 
+    public void play_v1(Hero oneHero, Monster oneMonster)
+    {
+        fight1v1(oneHero, oneMonster);
+    }
+
+    public void play_v2(Hero oneHero, Monster oneMonster)
+    {
+        RingedKnightArmor oneRingKnight = new RingedKnightArmor();
+        oneHero.setArmorItem(oneRingKnight, 2);
+        fight1v1(oneHero, oneMonster);
+    }
+
+    public void play_v3(Hero oneHero, Monster oneMonster)
+    {
+        RingedKnightArmor oneRingKnight = new RingedKnightArmor();
+        oneHero.setArmorItem(oneRingKnight, 2);
+        fight1v1(oneHero, oneMonster);
+    }
+
     public static void main(String[] args)
     {
         LearningSoulsGame thatGame = new LearningSoulsGame();
         Hero h1 = new Hero("hero2kaliteySuperieure");
-        Monster m1 = new Monster("Studentatort");
+        //Monster m1 = new Monster("Studentatort");
+        Lycanthrope L1 = new Lycanthrope();
 
-        thatGame.fight1v1(h1, m1);
+        thatGame.play_v2(h1, L1);
     }
 }

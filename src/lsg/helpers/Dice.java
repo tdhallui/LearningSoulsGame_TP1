@@ -8,7 +8,7 @@ import java.util.Random;
 public class Dice
 {
     private int max_faces;
-    private int seed = 5342;
+    private int seed = 5340;
     private Random rand;
 
     public int rool()

@@ -3,10 +3,12 @@ package lsg.characters;
 import lsg.helpers.Dice;
 import lsg.weapons.Weapons;
 
+import java.util.Locale;
+
 /**
  * Created by tdhallui on 12/10/17.
  */
-public class Character
+abstract public class Character
 {
     protected String name;
     protected int maxLife;
@@ -62,21 +64,11 @@ public class Character
     }
 
     public void setWeapon(Weapons oneWeapon) { this.weapon = oneWeapon; }
+    public Weapons getWeapon() { return this.weapon; }
 
     public boolean isAlive()
     {
         return ((0 < this.life) ? true : false);
-    }
-
-    @Override
-    public String toString()
-    {
-        String statut = "ALIVE";
-        if (!this.isAlive()) statut = "DEAD";
-        String ret = String.format("[ %-20s ]\t%-20s\tLIFE: %-10s\tSTAMINA: %-10s\t(%-20s)", getTypeCharacter(), this.name, String.format("%5d", this.life), this.stamina, statut);
-        return (ret);
-        // BEFORE CHANGING :
-        // "[ "+getTypeCharacter()+" ]\t"+this.name+"\tLIFE: "+this.life+"\tSTAMINA: "+this.stamina+"\t("+statut+")"
     }
 
     protected long attackWith(Weapons weapon)
@@ -95,6 +87,7 @@ public class Character
             finalDamag = luckDamag * quotStam;
             this.stamina = 0;
         }
+        finalDamag += (finalDamag * computeBuff() / 100);
         return (Math.round(finalDamag));
     }
 
@@ -103,18 +96,26 @@ public class Character
         return (attackWith(this.weapon));
     }
 
+    abstract protected float computeProtection();
+    abstract protected float computeBuff();
+
     public int getHitWith(int value)
     {
-        int ret = (this.life < value) ? this.life : value;
-        if (this.life < value)
+        int new_value = 0;
+        int ret = 0;
+        if (computeProtection() < 100)
         {
-            ret = this.life;
-            this.life = 0;
-        }
-        else
-        {
-            ret = value;
-            this.life -= value;
+            new_value = Math.round(value - value * computeProtection() / 100);
+            if (this.life < new_value)
+            {
+                ret = this.life;
+                this.life = 0;
+            }
+            else
+            {
+                ret = new_value;
+                this.life -= new_value;
+            }
         }
         return (ret);
     }
@@ -124,4 +125,14 @@ public class Character
         this.name = received_name;
         this.oneDice = new Dice(101);
     }
+
+    @Override
+    public String toString()
+    {
+        String statut = "ALIVE";
+        if (!this.isAlive()) statut = "DEAD";
+        String ret = String.format("%-20s %-20s LIFE:%-10s STAMINA:%-10s PROTECTION:%-10s BUFF:%-10s(%s)", "[ "+getTypeCharacter()+" ]", this.name, String.format("%5d", this.life), String.format("%5d", this.stamina), String.format(Locale.US,"%6.2f", this.computeProtection()), String.format(Locale.US,"%6.2f", this.computeBuff()), statut);
+        return (ret);
+    }
+
 }
