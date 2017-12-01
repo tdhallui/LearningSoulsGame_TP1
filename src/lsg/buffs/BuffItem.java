@@ -1,8 +1,10 @@
 package lsg.buffs;
 
+import lsg.bags.Collectible;
+
 import java.util.Locale;
 
-public abstract class BuffItem
+public abstract class BuffItem implements Collectible
 {
     private String name ;
 
@@ -14,6 +16,11 @@ public abstract class BuffItem
     }
 
     public abstract float computeBuffValue();
+
+    @Override
+    public int getWeight() {
+        return 1;
+    }
 
     @Override
     public String toString()
